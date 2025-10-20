@@ -8,7 +8,7 @@ resources:
       serverless: true
       libraries:
         - notebook:
-            path: ../src/silver_notebook
+            path: ../src/silver_notebook.ipynb
 
       configuration:
         bundle.sourcePath: ${workspace.file_path}/src
