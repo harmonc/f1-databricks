@@ -16,7 +16,5 @@ resources:
 
       tasks:
         - task_key: refresh_pipeline
-          depends_on:
-            - task_key: notebook_task
           pipeline_task:
             pipeline_id: ${resources.pipelines.f1_pipeline.id}
