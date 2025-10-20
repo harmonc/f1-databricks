@@ -15,10 +15,6 @@ resources:
       #    - your_email@example.com
 
       tasks:
-        - task_key: notebook_task
-          notebook_task:
-            notebook_path: ../src/notebook.ipynb
-
         - task_key: refresh_pipeline
           depends_on:
             - task_key: notebook_task
