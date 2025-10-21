@@ -115,24 +115,90 @@
         },
         {
           "widget": {
-            "name": "8a5abaa3",
+            "name": "9e307d79",
             "queries": [
               {
                 "name": "main_query",
                 "query": {
                   "datasetName": "55199179",
-                  "disaggregated": true
+                  "fields": [
+                    {
+                      "name": "position",
+                      "expression": "`position`"
+                    },
+                    {
+                      "name": "count(driverId)",
+                      "expression": "COUNT(`driverId`)"
+                    }
+                  ],
+                  "disaggregated": false
                 }
               }
             ],
             "spec": {
               "version": 3,
               "widgetType": "bar",
-              "encodings": {}
+              "encodings": {
+                "x": {
+                  "fieldName": "position",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "y": {
+                  "fieldName": "count(driverId)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "frame": {
+                "title": "Position Distribution",
+                "showTitle": true
+              }
             }
           },
           "position": {
             "x": 0,
+            "y": 1,
+            "width": 3,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "3ea50da6",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "55199179",
+                  "fields": [
+                    {
+                      "name": "countdistinct(time)",
+                      "expression": "COUNT(DISTINCT `time`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "countdistinct(time)"
+                }
+              },
+              "frame": {
+                "title": "Average Lap Time",
+                "showTitle": true
+              }
+            }
+          },
+          "position": {
+            "x": 3,
             "y": 1,
             "width": 3,
             "height": 6
