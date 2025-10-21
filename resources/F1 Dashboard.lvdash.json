@@ -1,0 +1,150 @@
+{
+  "datasets": [
+    {
+      "name": "f8eeadf0",
+      "displayName": "drivers_names",
+      "queryLines": [
+        "SELECT * FROM f1.silver.drivers_names"
+      ]
+    },
+    {
+      "name": "55199179",
+      "displayName": "lap_times",
+      "queryLines": [
+        "SELECT * FROM f1.bronze.lap_times laps\n",
+        "join f1.silver.drivers_names drivers on drivers.driverId = laps.driverId\n",
+        "where drivers.name = :parameter "
+      ],
+      "parameters": [
+        {
+          "displayName": "parameter",
+          "keyword": "parameter",
+          "dataType": "STRING",
+          "defaultSelection": {
+            "values": {
+              "dataType": "STRING",
+              "values": [
+                {
+                  "value": "Lewis Hamilton"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "name": "23c929fe",
+      "displayName": "Driver Summary",
+      "layout": [
+        {
+          "widget": {
+            "name": "6bbb3bd0",
+            "queries": [
+              {
+                "name": "dashboards/01f0ae18bfc910bc96fd153d4864ee14/datasets/01f0ae196075105fa9c1171c30aa04aa_name",
+                "query": {
+                  "datasetName": "f8eeadf0",
+                  "fields": [
+                    {
+                      "name": "name",
+                      "expression": "`name`"
+                    },
+                    {
+                      "name": "name_associativity",
+                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              },
+              {
+                "name": "parameter_dashboards/01f0ae18bfc910bc96fd153d4864ee14/datasets/01f0ae1ad86a141292d047721e536c03_parameter",
+                "query": {
+                  "datasetName": "55199179",
+                  "parameters": [
+                    {
+                      "name": "parameter",
+                      "keyword": "parameter"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "widgetType": "filter-single-select",
+              "encodings": {
+                "fields": [
+                  {
+                    "fieldName": "name",
+                    "queryName": "dashboards/01f0ae18bfc910bc96fd153d4864ee14/datasets/01f0ae196075105fa9c1171c30aa04aa_name"
+                  },
+                  {
+                    "parameterName": "parameter",
+                    "queryName": "parameter_dashboards/01f0ae18bfc910bc96fd153d4864ee14/datasets/01f0ae1ad86a141292d047721e536c03_parameter"
+                  }
+                ]
+              },
+              "frame": {
+                "showTitle": true
+              },
+              "selection": {
+                "defaultSelection": {
+                  "values": {
+                    "dataType": "STRING",
+                    "values": [
+                      {
+                        "value": "Lewis Hamilton"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 3,
+            "height": 1
+          }
+        },
+        {
+          "widget": {
+            "name": "8a5abaa3",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "55199179",
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {}
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 1,
+            "width": 3,
+            "height": 6
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS"
+    }
+  ],
+  "uiSettings": {
+    "theme": {
+      "widgetHeaderAlignment": "ALIGNMENT_UNSPECIFIED"
+    }
+  }
+}
