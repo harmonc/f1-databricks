@@ -1,0 +1,8 @@
+resources:
+  schemas:
+    silver:
+      name: silver
+      catalog_name: f1
+    gold:
+      name: gold
+      catalog_name: f1

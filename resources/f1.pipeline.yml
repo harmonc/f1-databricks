@@ -9,6 +9,7 @@ resources:
       libraries:
         - notebook:
             path: ../src/silver_notebook.ipynb
-
+        - notebook:
+            path: ../src/gold_notebook.ipynb
       configuration:
         bundle.sourcePath: ${workspace.file_path}/src
