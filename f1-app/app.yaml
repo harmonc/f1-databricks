@@ -1,0 +1,5 @@
+command: ["uvicorn", "backend.main:app"]
+
+env:
+  - name: "DATABRICKS_WAREHOUSE_ID"
+    valueFrom: "sql-warehouse"
