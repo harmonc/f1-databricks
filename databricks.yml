@@ -16,13 +16,8 @@ resources:
       resources:
         - name: 'sql-warehouse'
           sql_warehouse:
-            id: ${var.sql_warehouse_id}
+            id: '68b3184b1ec5beb2'
             permission: CAN_MANAGE
-
-variables:
-  sql_warehouse_id:
-    lookup:
-      sql_warehouse: 'Serverless Starter Warehouse'
 
 targets:
   dev:
