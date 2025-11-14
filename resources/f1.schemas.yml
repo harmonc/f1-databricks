@@ -7,9 +7,9 @@ resources:
       name: gold
       catalog_name: f1
       grants:
-        principal: ${resources.apps.my_app.id}
-        privileges:
-          - USE SCHEMA
-          - EXECUTE
-          - READ VOLUME
-          - SELECT
+        - principal: ${resources.apps.my_app.id}
+          privileges:
+            - USE SCHEMA
+            - EXECUTE
+            - READ VOLUME
+            - SELECT
