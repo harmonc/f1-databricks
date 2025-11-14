@@ -3,6 +3,10 @@ resources:
     silver:
       name: silver
       catalog_name: f1
+      grants:
+        - principal: ${resources.apps.my_app.id}
+          privileges:
+            - ALL_PRIVILEGES
     gold:
       name: gold
       catalog_name: f1
