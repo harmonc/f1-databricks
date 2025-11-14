@@ -76,6 +76,7 @@ function App() {
     },
     scales: {
       x: {
+        type: "linear",
         display: true,
         title: {
           display: true,

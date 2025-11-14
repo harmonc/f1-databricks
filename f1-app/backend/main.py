@@ -50,14 +50,14 @@ async def get_data():
     logger.info("Data requested at /api/data")
     df = sqlQuery("SELECT * FROM f1.silver.lap_times WHERE raceId = 1 AND driverId = 1")
     logger.info(f"{df}")
-    data = [{row.lap:row.position} for _, row in df.iterrows()]
+    data = [{"x":row.lap,"y":row.position} for _, row in df.iterrows()]
     logger.info(f"Retrieved {len(data)} data points")
     # data = [{"x": x, "y": 2 ** x} for x in range(30)]
     return {
         "data": data,
         "title": "Hello world!",
-        "x_title": "Apps",
-        "y_title": "Fun with data"
+        "x_title": "x",
+        "y_title": "y"
     }
 
 # --- Static Files Setup ---
