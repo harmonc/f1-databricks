@@ -14,7 +14,8 @@ resources:
       source_code_path: /Workspace/Users/${workspace.current_user.userName}/.bundle/${bundle.name}/${bundle.target}/files/f1-app
       name: f1-app
       resources:
-        - sql_warehouse:
+        - name: 'sql-warehouse'
+          sql_warehouse:
             id: "Serverless Starter Warehouse"
             permission: CAN_MANAGE
 targets:
