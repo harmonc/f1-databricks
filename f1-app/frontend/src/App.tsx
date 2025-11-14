@@ -123,7 +123,7 @@ function App() {
             
             {chartData && (
               <div className="chart-container">
-                <Scatter data={scatterData} options={chartOptions} />
+                <Line data={scatterData} options={chartOptions} />
               </div>
             )}
           </div>
