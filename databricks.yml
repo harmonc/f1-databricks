@@ -11,7 +11,7 @@ include:
 resources:
   apps:
     my_app:
-      source_code_path: ./f1-app/backend/main.py  # Path to your app's entry point
+      source_code_path: ./f1-app
       name: f1_app
 
 targets:
