@@ -83,6 +83,7 @@ function App() {
         }
       },
       y: {
+        reverse: true,
         display: true,
         title: {
           display: true,
