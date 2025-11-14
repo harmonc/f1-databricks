@@ -9,4 +9,4 @@ resources:
       grants:
         - principal: ${resources.apps.my_app.id}
           privileges:
-            - ALL PRIVILEGES
+            - ALL_PRIVILEGES
