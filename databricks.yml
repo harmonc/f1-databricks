@@ -16,8 +16,14 @@ resources:
       resources:
         - name: 'sql-warehouse'
           sql_warehouse:
-            id: "Serverless Starter Warehouse"
+            id: ${var.sql_warehouse_id}
             permission: CAN_MANAGE
+
+variables:
+  sql_warehouse_id:
+    lookup:
+      sql_warehouse: 'Serverless Starter Warehouse'
+
 targets:
   dev:
     # The default target uses 'mode: development' to create a development copy.
