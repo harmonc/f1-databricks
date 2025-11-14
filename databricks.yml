@@ -14,8 +14,8 @@ resources:
       source_code_path: /Workspace/Users/${workspace.current_user.userName}/.bundle/${bundle.name}/${bundle.target}/files/f1-app
       name: f1-app
       resources:
-        sql-warehouse:
-          id: "Serverless Starter Warehouse"
+        - sql-warehouse:
+            id: "Serverless Starter Warehouse"
 targets:
   dev:
     # The default target uses 'mode: development' to create a development copy.
