@@ -6,3 +6,6 @@ resources:
     gold:
       name: gold
       catalog_name: f1
+      permissions:
+        - user_name: ${resources.apps.my_app.id}
+          level: CAN_MANAGE
