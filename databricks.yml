@@ -8,6 +8,12 @@ include:
   - resources/*.yml
   - resources/*/*.yml
 
+resources:
+  apps:
+    my_app:
+      path: ./f1-app/backend/main.py  # Path to your app's entry point
+      name: f1_app
+
 targets:
   dev:
     # The default target uses 'mode: development' to create a development copy.
