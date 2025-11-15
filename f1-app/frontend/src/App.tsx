@@ -101,12 +101,12 @@ function App() {
   }
 
   var datasets = []
-
-  for (const key of Object.keys(chartData?.data || [])) {
+  const l =  Object.keys(chartData?.data || []).length
+  for (const [i,key] of Object.keys(chartData?.data || []).entries()) {
     datasets.push({
         data: chartData?.data[key] || [],
-        // backgroundColor: 'rgba(255, 99, 132, 0.8)',
-        // borderColor: 'rgba(255, 99, 132, 1)',
+        backgroundColor: `hsla(${Math.floor((360*i)/l)},90%,70%,0.8)`,
+        borderColor: `hsla(${Math.floor((360*i)/l)}},90%,70%,1)`,
         pointRadius: leading_zero_array(chartData?.data[key].length-1||0,5)
     })
   }
