@@ -94,6 +94,12 @@ function App() {
     }
   }
 
+  function leading_zero_array(n_zeros, last_number){
+    var result = Array(n_zeros+1).fill(0)
+    result[n_zeros] = last_number
+    return result
+  }
+
   var datasets = []
 
   for (const key of Object.keys(chartData?.data || [])) {
@@ -101,7 +107,7 @@ function App() {
         data: chartData?.data[key] || [],
         // backgroundColor: 'rgba(255, 99, 132, 0.8)',
         // borderColor: 'rgba(255, 99, 132, 1)',
-        // pointRadius: 4
+        pointRadius: leading_zero_array(chartData?.data[key].length||0,5)
     })
   }
 
