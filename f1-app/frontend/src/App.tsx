@@ -96,7 +96,7 @@ function App() {
 
   var datasets = []
 
-  for (const key of Object.keys(chartData?.data)) {
+  for (const key of Object.keys(chartData?.data || [])) {
     datasets.push({
         data: chartData?.data[key] || [],
         backgroundColor: 'rgba(255, 99, 132, 0.8)',
