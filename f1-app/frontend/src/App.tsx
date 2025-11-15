@@ -106,7 +106,7 @@ function App() {
     datasets.push({
         data: chartData?.data[key] || [],
         backgroundColor: `hsla(${Math.floor((360*i)/l)},90%,70%,0.8)`,
-        borderColor: `hsla(${Math.floor((360*i)/l)}},90%,70%,1)`,
+        borderColor: `hsla(${Math.floor((360*i)/l)},90%,70%,1)`,
         pointRadius: leading_zero_array(chartData?.data[key].length-1||0,5)
     })
   }
