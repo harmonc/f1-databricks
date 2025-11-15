@@ -51,10 +51,13 @@ async def get_data():
     df = sqlQuery("SELECT * FROM f1.silver.lap_times WHERE raceId = 1")
     logger.info(f"{df}")
     data = [{"x":row.lap,"y":row.position,"driverId":row.driverId} for _, row in df.iterrows()]
-    logger.info(f"{data}")
+    data_map = {}
+    for lap, position, driverId in data:
+        data_map.setdefault(driverId, []).append({"x":lap,"y": position})
+    logger.info(f"{data_map}")
     # data = [{"x": x, "y": 2 ** x} for x in range(30)]
     return {
-        "data": data,
+        "data": data_map,
         "title": "Hello world!",
         "x_title": "x",
         "y_title": "y"
