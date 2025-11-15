@@ -50,7 +50,7 @@ async def get_data():
     logger.info("Data requested at /api/data")
     df = sqlQuery("SELECT * FROM f1.silver.lap_times WHERE raceId = 1")
     logger.info(f"{df}")
-    data = [{"x":row.lap,"y":row.position,"driverId":row.driverId} for _, row in df.iterrows()]
+    data = [[row.lap,row.position,row.driverId] for _, row in df.iterrows()]
     data_map = {}
     for lap, position, driverId in data:
         data_map.setdefault(driverId, []).append({"x":lap,"y": position})
