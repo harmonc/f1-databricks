@@ -107,7 +107,7 @@ function App() {
         data: chartData?.data[key] || [],
         // backgroundColor: 'rgba(255, 99, 132, 0.8)',
         // borderColor: 'rgba(255, 99, 132, 1)',
-        pointRadius: leading_zero_array(chartData?.data[key].length||0,5)
+        pointRadius: leading_zero_array(chartData?.data[key].length-1||0,5)
     })
   }
 
