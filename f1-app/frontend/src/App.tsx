@@ -94,15 +94,19 @@ function App() {
     }
   }
 
-  const scatterData = {
-    datasets: [
-      {
-        data: chartData?.data[1] || [],
+  var datasets = []
+
+  for (const key of chartData?.data.keys()) {
+    datasets.push({
+        data: chartData?.data[key] || [],
         backgroundColor: 'rgba(255, 99, 132, 0.8)',
         borderColor: 'rgba(255, 99, 132, 1)',
-        pointRadius: 4,
-      },
-    ],
+        pointRadius: 4
+    })
+  }
+
+  const scatterData = {
+    datasets: datasets
   }
 
   return (
