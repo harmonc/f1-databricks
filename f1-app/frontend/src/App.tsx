@@ -38,6 +38,12 @@ interface ChartData {
   y_title: string
 }
 
+
+import Dropdown from 'react-bootstrap/Dropdown';
+
+
+export default BasicExample;
+
 function App() {
   const [apiData, setApiData] = useState<ApiResponse | null>(null)
   const [chartData, setChartData] = useState<ChartData | null>(null)
@@ -121,6 +127,17 @@ function App() {
         {loading ? (
           <p>Loading...</p>
         ) : (
+          <Dropdown>
+            <Dropdown.Toggle variant="success" id="dropdown-basic">
+              Dropdown Button
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu>
+              <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+              <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+              <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
           <div className="content">
             {apiData ? null : (
               <p>Failed to connect to API</p>
