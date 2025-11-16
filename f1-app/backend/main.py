@@ -45,10 +45,10 @@ async def health_check():
     logger.info("Health check at /api/health")
     return {"status": "healthy"}
 
-@app.get("/api/data")
-async def get_data():
+@app.get("/api/data/{race_id}")
+async def get_data(race_id: int):
     logger.info("Data requested at /api/data")
-    df = sqlQuery("SELECT * FROM f1.silver.lap_times WHERE raceId = 1")
+    df = sqlQuery(f"SELECT * FROM f1.silver.lap_times WHERE raceId = {race_id}")
     logger.info(f"{df}")
     data = [[row.lap,row.position,row.driverId] for _, row in df.iterrows()]
     data_map = {}
