@@ -117,17 +117,12 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>🚀 Node.js + FastAPI Hello World</h1>
-        
+      <header className="App-header">        
         {loading ? (
           <p>Loading...</p>
         ) : (
           <div className="content">
             {apiData ? (
-              <div className="api-info">
-                <p className="message">{apiData.message}</p>
-              </div>
             ) : (
               <p>Failed to connect to API</p>
             )}
