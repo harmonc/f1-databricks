@@ -122,8 +122,7 @@ function App() {
           <p>Loading...</p>
         ) : (
           <div className="content">
-            {apiData ? (
-            ) : (
+            {apiData ? null : (
               <p>Failed to connect to API</p>
             )}
             
