@@ -47,7 +47,7 @@ function App() {
     // Fetch both hello message and chart data
     Promise.all([
       fetch('/api/hello').then(response => response.json()),
-      fetch(`/api/data/${1}`).then(response => response.json())
+      fetch(`/api/data/${100}`).then(response => response.json())
     ])
       .then(([helloData, dataResponse]) => {
         setApiData(helloData)
