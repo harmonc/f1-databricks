@@ -42,12 +42,16 @@ interface YearData {
   years: number[]
 }
 
+
+
 function App() {
   const [apiData, setApiData] = useState<ApiResponse | null>(null)
   const [chartData, setChartData] = useState<ChartData | null>(null)
   const [yearData, setYearData] = useState<YearData | null>(null)
   const [loading, setLoading] = useState(true)
-
+  function onYearChange(year: Number){
+    console.log(year)
+  }
   useEffect(() => {
     // Fetch both hello message and chart data
     Promise.all([
@@ -129,7 +133,7 @@ function App() {
           <p>Loading...</p>
         ) : (
           <div className="content">
-            <select id="year">
+            <select id="year" onChange={onYearChange}>
             {yearData ? yearData.years.map((year) => (
               <option key={year} value={year}>
                 {year}

@@ -74,6 +74,17 @@ async def get_years():
         "years":data
     }
 
+@app.get("/api/races/{year}")
+async def get_races(year: int):
+    logger.info(f"Races requested at /api/races/{year}")
+    df = sqlQuery(f"select name from f1.silver.dim_races where year(date) = {year}")
+    data = [row.name for _, row in df.iterrows()]
+    logger.info(f"races:{type(data)}")
+    data.sort(reverse=True)
+    return {
+        "races":data
+    }
+
 # --- Static Files Setup ---
 static_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static")
 os.makedirs(static_dir, exist_ok=True)
