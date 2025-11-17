@@ -131,10 +131,12 @@ function App() {
           <div className="content">
             <select>
               <select>
-              {yearData.years.map((year) => (
+              {yearData ? yearData.years.map((year) => (
                 <option key={year} value={year}>
                   {year}
                 </option>
+                :
+                null
               ))}
             </select>
             </select>
