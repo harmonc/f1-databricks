@@ -49,7 +49,8 @@ function App() {
   const [chartData, setChartData] = useState<ChartData | null>(null)
   const [yearData, setYearData] = useState<YearData | null>(null)
   const [loading, setLoading] = useState(true)
-  function onYearChange(year: Number){
+  function onYearChange(year){
+    console.log("year changed")
     console.log(year)
   }
   useEffect(() => {
@@ -133,7 +134,7 @@ function App() {
           <p>Loading...</p>
         ) : (
           <div className="content">
-            <select id="year" onChange={onYearChange}>
+            <select id="year" onChange={(e) => onYearChange(e.target.value)}>
             {yearData ? yearData.years.map((year) => (
               <option key={year} value={year}>
                 {year}
