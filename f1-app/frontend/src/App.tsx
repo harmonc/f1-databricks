@@ -135,9 +135,8 @@ function App() {
                 <option key={year} value={year}>
                   {year}
                 </option>
-                :
-                null
-              ))}
+              )):
+                null}
             </select>
             </select>
             {apiData ? null : (
