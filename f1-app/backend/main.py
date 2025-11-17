@@ -67,8 +67,8 @@ async def get_data(race_id: int):
 async def get_years():
     logger.info("Years requested at /api/years")
     df = sqlQuery("select distinct year(date) as year from f1.silver.dim_races")
-    data = [row.year for _, row in df.iterrows()]
-    logger.info(f"years:{data}")
+    data = [int(row.year) for _, row in df.iterrows()]
+    logger.info(f"years:{type(data)}")
     return {
         "years":data
     }
