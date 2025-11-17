@@ -51,25 +51,28 @@ function App() {
   const [chartData, setChartData] = useState<ChartData | null>(null)
   const [yearData, setYearData] = useState<YearData | null>(null)
   const [raceData, setRaceData] = useState<RaceData | null>(null)
+  const [selectedYear, setSelectedYear] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
-  function onYearChange(year){
-    console.log("year changed")
-    console.log(year)
-     useEffect(() => {
-    // Fetch both hello message and chart data
-    Promise.all([
-      fetch(`/api/races/${year}`).then(response => response.json())
-    ])
-      .then(([raceResponse]) => {
-        setRaceData(raceResponse)
-        setLoading(false)
-      })
-      .catch(error => {
-        console.error('Error:', error)
-        setLoading(false)
-      })
-  }, [])
+  function onYearChange(year: string) {
+    console.log("year changed:", year)
+    setSelectedYear(year)
   }
+  useEffect(() => {
+    if (!selectedYear) return  // don't run on initial page load
+
+    setLoading(true)
+
+    fetch(`/api/races/${selectedYear}`)
+      .then(res => res.json())
+      .then((data) => {
+        setRaceData(data)
+        setLoading(false)
+      })
+      .catch((err) => {
+        console.error("Race fetch error:", err)
+        setLoading(false)
+      })
+  }, [selectedYear])
   useEffect(() => {
     // Fetch both hello message and chart data
     Promise.all([
