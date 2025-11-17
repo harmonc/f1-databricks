@@ -38,20 +38,27 @@ interface ChartData {
   y_title: string
 }
 
+interface YearData {
+  years: number[]
+}
+
 function App() {
   const [apiData, setApiData] = useState<ApiResponse | null>(null)
   const [chartData, setChartData] = useState<ChartData | null>(null)
+  const [yearData, setYearData] = useState<YearData | null>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     // Fetch both hello message and chart data
     Promise.all([
       fetch('/api/hello').then(response => response.json()),
-      fetch(`/api/data/${100}`).then(response => response.json())
+      fetch(`/api/data/${100}`).then(response => response.json()),
+      fetch('/api/years').then(response => response.json())
     ])
-      .then(([helloData, dataResponse]) => {
+      .then(([helloData, dataResponse, yearResponse]) => {
         setApiData(helloData)
         setChartData(dataResponse)
+        setYearData(yearResponse)
         setLoading(false)
       })
       .catch(error => {
@@ -123,8 +130,13 @@ function App() {
         ) : (
           <div className="content">
             <select>
-              <option value="someOption">Some option</option>
-              <option value="otherOption">Other option</option>
+              <select>
+              {yearData.years.map((year) => (
+                <option key={year} value={year}>
+                  {year}
+                </option>
+              ))}
+            </select>
             </select>
             {apiData ? null : (
               <p>Failed to connect to API</p>

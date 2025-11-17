@@ -63,6 +63,16 @@ async def get_data(race_id: int):
         "y_title": "y"
     }
 
+@app.get("/api/years")
+async def get_years():
+    logger.info("Years requested at /api/years")
+    df = sqlQuery("select distinct year(date) as year from f1.silver.dim_races")
+    data = [row.year for _, row in df.iterrows()]
+    logger.info(f"years:{data}")
+    return {
+        "years":data
+    }
+
 # --- Static Files Setup ---
 static_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static")
 os.makedirs(static_dir, exist_ok=True)
