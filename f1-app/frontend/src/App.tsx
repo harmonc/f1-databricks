@@ -129,15 +129,13 @@ function App() {
           <p>Loading...</p>
         ) : (
           <div className="content">
-            <select>
-              <select id="year">
-              {yearData ? yearData.years.map((year) => (
-                <option key={year} value={year}>
-                  {year}
-                </option>
-              )):
-                null}
-            </select>
+            <select id="year">
+            {yearData ? yearData.years.map((year) => (
+              <option key={year} value={year}>
+                {year}
+              </option>
+            )):
+              null}
             </select>
             {apiData ? null : (
               <p>Failed to connect to API</p>
