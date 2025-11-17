@@ -69,8 +69,9 @@ async def get_years():
     df = sqlQuery("select distinct year(date) as year from f1.silver.dim_races")
     data = [int(row.year) for _, row in df.iterrows()]
     logger.info(f"years:{type(data)}")
+    data.sort(reverse=True)
     return {
-        "years":data.sort(reverse=True)
+        "years":data
     }
 
 # --- Static Files Setup ---
