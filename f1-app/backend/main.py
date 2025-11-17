@@ -70,7 +70,7 @@ async def get_years():
     data = [int(row.year) for _, row in df.iterrows()]
     logger.info(f"years:{type(data)}")
     return {
-        "years":data
+        "years":data.sort(reverse=True)
     }
 
 # --- Static Files Setup ---
