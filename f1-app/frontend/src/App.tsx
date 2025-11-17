@@ -42,16 +42,33 @@ interface YearData {
   years: number[]
 }
 
-
+interface RaceData{
+  races: string[]
+}
 
 function App() {
   const [apiData, setApiData] = useState<ApiResponse | null>(null)
   const [chartData, setChartData] = useState<ChartData | null>(null)
   const [yearData, setYearData] = useState<YearData | null>(null)
+  const [raceData, setRaceData] = useState<RaceData | null>(null)
   const [loading, setLoading] = useState(true)
   function onYearChange(year){
     console.log("year changed")
     console.log(year)
+     useEffect(() => {
+    // Fetch both hello message and chart data
+    Promise.all([
+      fetch(`/api/races/${year}`).then(response => response.json())
+    ])
+      .then(([raceResponse]) => {
+        setRaceData(raceResponse)
+        setLoading(false)
+      })
+      .catch(error => {
+        console.error('Error:', error)
+        setLoading(false)
+      })
+  }, [])
   }
   useEffect(() => {
     // Fetch both hello message and chart data
@@ -138,6 +155,14 @@ function App() {
             {yearData ? yearData.years.map((year) => (
               <option key={year} value={year}>
                 {year}
+              </option>
+            )):
+              null}
+            </select>
+            <select id="race">
+            {raceData ? raceData.races.map((race) => (
+              <option key={race} value={race}>
+                {race}
               </option>
             )):
               null}
