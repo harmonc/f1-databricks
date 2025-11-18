@@ -45,7 +45,7 @@ async def health_check():
     logger.info("Health check at /api/health")
     return {"status": "healthy"}
 
-@app.get("/api/data/")
+@app.get("/api/data")
 async def get_data(race_id: int):
     logger.info("Data requested at /api/data")
     df = sqlQuery(f"SELECT * FROM f1.silver.lap_times WHERE raceId = {race_id}")
@@ -63,7 +63,7 @@ async def get_data(race_id: int):
         "y_title": "y"
     }
 
-@app.get("/api/years/")
+@app.get("/api/years")
 async def get_years():
     logger.info("Years requested at /api/years")
     df = sqlQuery("select distinct year(date) as year from f1.silver.dim_races")
@@ -74,7 +74,7 @@ async def get_years():
         "years":data
     }
 
-@app.get("/api/races/")
+@app.get("/api/races")
 async def get_races(year: int):
     logger.info(f"Races requested at /api/races/{year}")
     df = sqlQuery(f"select name from f1.silver.dim_races where year(date) = {year}")
