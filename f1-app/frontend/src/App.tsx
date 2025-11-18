@@ -62,7 +62,7 @@ function App() {
 
     setLoading(true)
 
-    fetch(`/api/races/${selectedYear}`)
+    fetch(`/api/races/?year=${selectedYear}`)
       .then(res => res.json())
       .then((data) => {
         setRaceData(data)
@@ -77,7 +77,7 @@ function App() {
     // Fetch both hello message and chart data
     Promise.all([
       fetch('/api/hello').then(response => response.json()),
-      fetch(`/api/data/${100}`).then(response => response.json()),
+      fetch(`/api/data/?race_id=${100}`).then(response => response.json()),
       fetch('/api/years').then(response => response.json())
     ])
       .then(([helloData, dataResponse, yearResponse]) => {
@@ -156,7 +156,7 @@ function App() {
           <div className="content">
             <select id="year" onChange={(e) => onYearChange(e.target.value)}>
             {yearData ? yearData.years.map((year) => (
-              <option key={year} value={year} selected={year === selectedYear}>
+              <option key={year} value={year} selected={year == selectedYear}>
                 {year}
               </option>
             )):
