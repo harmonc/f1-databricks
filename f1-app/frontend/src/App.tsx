@@ -156,7 +156,7 @@ function App() {
           <div className="content">
             <select id="year" onChange={(e) => onYearChange(e.target.value)}>
             {yearData ? yearData.years.map((year) => (
-              <option key={year} value={year}>
+              <option key={year} value={year} selected={year === selectedYear}>
                 {year}
               </option>
             )):
