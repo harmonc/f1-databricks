@@ -80,7 +80,6 @@ async def get_races(year: int):
     df = sqlQuery(f"select * from f1.silver.dim_races where year(date) = {year}")
     data = [{"name":row['name'],"id":row['raceId']} for _, row in df.iterrows()]
     logger.info(f"races:{data}")
-    data.sort(reverse=True)
     return {
         "races":data
     }
