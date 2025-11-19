@@ -57,10 +57,15 @@ function App() {
   const [yearData, setYearData] = useState<YearData | null>(null)
   const [raceData, setRaceData] = useState<RaceData | null>(null)
   const [selectedYear, setSelectedYear] = useState<string | null>(2000)
+  const [selectedRace, setSelectedRace] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
   function onYearChange(year: string) {
     console.log("year changed:", year)
     setSelectedYear(year)
+  }
+  function onRaceChange(raceId: string) {
+      console.log("race changed:", raceId)
+      setSelectedRace(raceId)
   }
   useEffect(() => {
     if (!selectedYear) return  // don't run on initial page load
@@ -79,15 +84,29 @@ function App() {
       })
   }, [selectedYear])
   useEffect(() => {
+    if (!selectedYear) return  // don't run on initial page load
+
+    setLoading(true)
+
+    fetch(`/api/data/?race_id=${selectedRace}`)
+      .then(res => res.json())
+      .then((data) => {
+        setChartData(data)
+        setLoading(false)
+      })
+      .catch((err) => {
+        console.error("Race fetch error:", err)
+        setLoading(false)
+      })
+  }, [selectedRace])
+  useEffect(() => {
     // Fetch both hello message and chart data
     Promise.all([
       fetch('/api/hello').then(response => response.json()),
-      fetch(`/api/data/?race_id=${100}`).then(response => response.json()),
       fetch('/api/years').then(response => response.json())
     ])
-      .then(([helloData, dataResponse, yearResponse]) => {
+      .then(([helloData, yearResponse]) => {
         setApiData(helloData)
-        setChartData(dataResponse)
         setYearData(yearResponse)
         setLoading(false)
       })
@@ -167,7 +186,7 @@ function App() {
             )):
               null}
             </select>
-            <select id="race">
+            <select id="race" onChange={(e) => onRaceChange(e.target.value)}>
             {raceData ? raceData.races.map((race) => (
               <option key={race.id} value={race.id}>
                 {race.name}
