@@ -77,8 +77,8 @@ async def get_years():
 @app.get("/api/races/")
 async def get_races(year: int):
     logger.info(f"Races requested at /api/races/{year}")
-    df = sqlQuery(f"select name from f1.silver.dim_races where year(date) = {year}")
-    data = [row['name'] for _, row in df.iterrows()]
+    df = sqlQuery(f"select * from f1.silver.dim_races where year(date) = {year}")
+    data = [{"name":row['name'],"id":row['raceId']} for _, row in df.iterrows()]
     logger.info(f"races:{data}")
     data.sort(reverse=True)
     return {

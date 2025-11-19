@@ -42,8 +42,13 @@ interface YearData {
   years: number[]
 }
 
+interface RaceOption{
+  name: string
+  id: number
+}
+
 interface RaceData{
-  races: string[]
+  races: RaceOption[]
 }
 
 function App() {
@@ -164,8 +169,8 @@ function App() {
             </select>
             <select id="race">
             {raceData ? raceData.races.map((race) => (
-              <option key={race} value={race}>
-                {race}
+              <option key={race.id} value={race.id}>
+                {race.name}
               </option>
             )):
               null}
