@@ -54,9 +54,9 @@ interface RaceData{
 function App() {
   const [apiData, setApiData] = useState<ApiResponse | null>(null)
   const [chartData, setChartData] = useState<ChartData | null>(null)
-  const [yearData, setYearData] = useState<YearData | null>(2000)
+  const [yearData, setYearData] = useState<YearData | null>(null)
   const [raceData, setRaceData] = useState<RaceData | null>(null)
-  const [selectedYear, setSelectedYear] = useState<string | null>(null)
+  const [selectedYear, setSelectedYear] = useState<string | null>(2000)
   const [loading, setLoading] = useState(true)
   function onYearChange(year: string) {
     console.log("year changed:", year)
