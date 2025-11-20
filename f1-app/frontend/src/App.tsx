@@ -117,7 +117,10 @@ function App() {
   }, [])
 
   const totalDuration = 10000;
-  const maxPoints = chartData?.data.reduce((accumulator: number, currentValue: Array) => Math.max(accumulator, currentValue.length),0) || 1;
+  const maxPoints = (chartData?.data ?? []).reduce(
+    (acc, currentValue) => Math.max(acc, currentValue.length),
+    1
+  ) || 1;  
   var delayBetweenPoints = totalDuration / maxPoints;
   const chartOptions = {
     responsive: true,
