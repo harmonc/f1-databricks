@@ -146,7 +146,7 @@ var delayBetweenPoints = totalDuration / chartData?.data.reduce((accumulator: nu
           text: 'Position'
         }
       }
-    }
+    },
     options:{
       animation: {
         x: {
