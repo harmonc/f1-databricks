@@ -116,9 +116,9 @@ function App() {
       })
   }, [])
 
-const totalDuration = 10000;
-var delayBetweenPoints = totalDuration / chartData?.data.reduce((accumulator: number, currentValue: Array) => math.max(accumulator, currentValue.length),
-  0) || 1;
+  const totalDuration = 10000;
+  const maxPoints = chartData?.data.reduce((accumulator: number, currentValue: Array) => Math.max(accumulator, currentValue.length),0) || 1;
+  var delayBetweenPoints = totalDuration / maxPoints;
   const chartOptions = {
     responsive: true,
     plugins: {
