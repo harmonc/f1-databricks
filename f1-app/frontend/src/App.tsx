@@ -166,9 +166,7 @@ function App() {
         }
       }
     },
-    options:{
-      animation
-    },
+    animation
   }
 
   function leading_zero_array(n_zeros, last_number){
