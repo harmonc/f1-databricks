@@ -117,7 +117,7 @@ function App() {
   }, [])
 
   const totalDuration = 10000;
-  const maxPoints = (chartData?.data ?? []).reduce(
+  const maxPoints = (chartData?.data.values() ?? []).reduce(
     (acc, currentValue) => Math.max(acc, currentValue.length),
     1
   ) || 1;  
