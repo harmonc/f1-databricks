@@ -174,9 +174,6 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">        
-        {loading ? (
-          <p>Loading...</p>
-        ) : (
           <div className="content">
             <select id="year" onChange={(e) => onYearChange(e.target.value)}>
             {yearData ? yearData.years.map((year) => (
@@ -204,7 +201,6 @@ function App() {
               </div>
             )}
           </div>
-        )}
       </header>
     </div>
   )
