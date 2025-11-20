@@ -157,7 +157,7 @@ function App() {
           text: 'Lap'
         }
       },
-      y: {T
+      y: {
         reverse: true,
         display: true,
         title: {
