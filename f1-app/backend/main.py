@@ -66,7 +66,10 @@ async def get_data(race_id: int):
 @app.get("/api/years")
 async def get_years():
     logger.info("Years requested at /api/years")
-    df = sqlQuery("select distinct year(date) as year from f1.silver.dim_races")
+    df = sqlQuery("""
+        select distinct year(date) as year from f1.silver.dim_races races
+        where races.raceId in (select distinct raceId from f1.silver.lap_times)
+                  """)
     data = [int(row.year) for _, row in df.iterrows()]
     logger.info(f"years:{data}")
     data.sort(reverse=True)
@@ -77,7 +80,7 @@ async def get_years():
 @app.get("/api/races/")
 async def get_races(year: int):
     logger.info(f"Races requested at /api/races/{year}")
-    df = sqlQuery(f"select * from f1.silver.dim_races where year(date) = {year}")
+    df = sqlQuery(f"select * from f1.silver.dim_races races where year(date) = {year} and races.raceId in (select distinct raceId from f1.silver.lap_times)")
     data = [{"name":row['name'],"id":row['raceId']} for _, row in df.iterrows()]
     logger.info(f"races:{data}")
     return {
