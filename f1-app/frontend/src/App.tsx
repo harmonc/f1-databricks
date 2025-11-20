@@ -122,6 +122,22 @@ function App() {
     1
   ) || 1;  
   var delayBetweenPoints = totalDuration / maxPoints;
+  const animation =       
+    {
+        x: {
+          type: 'number',
+          easing: 'linear',
+          duration: delayBetweenPoints,
+          from: NaN, // the point is initially skipped
+          delay(ctx) {
+            if (ctx.type !== 'data' || ctx.xStarted) {
+              return 0;
+            }
+            ctx.xStarted = true;
+            return ctx.index * delayBetweenPoints;
+          }
+        }
+      }
   const chartOptions = {
     responsive: true,
     plugins: {
@@ -151,21 +167,7 @@ function App() {
       }
     },
     options:{
-      animation: {
-        x: {
-          type: 'number',
-          easing: 'linear',
-          duration: delayBetweenPoints,
-          from: NaN, // the point is initially skipped
-          delay(ctx) {
-            if (ctx.type !== 'data' || ctx.xStarted) {
-              return 0;
-            }
-            ctx.xStarted = true;
-            return ctx.index * delayBetweenPoints;
-          }
-        }
-      }
+      animation
     },
   }
 
