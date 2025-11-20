@@ -116,6 +116,9 @@ function App() {
       })
   }, [])
 
+const totalDuration = 10000;
+var delayBetweenPoints = totalDuration / chartData?.data.reduce((accumulator: number, currentValue: Array) => math.max(accumulator, currentValue.length),
+  0) || 1;
   const chartOptions = {
     responsive: true,
     plugins: {
@@ -144,6 +147,23 @@ function App() {
         }
       }
     }
+    options:{
+      animation: {
+        x: {
+          type: 'number',
+          easing: 'linear',
+          duration: delayBetweenPoints,
+          from: NaN, // the point is initially skipped
+          delay(ctx) {
+            if (ctx.type !== 'data' || ctx.xStarted) {
+              return 0;
+            }
+            ctx.xStarted = true;
+            return ctx.index * delayBetweenPoints;
+          }
+        }
+      }
+    },
   }
 
   function leading_zero_array(n_zeros, last_number){
