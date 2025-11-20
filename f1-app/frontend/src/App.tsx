@@ -64,8 +64,8 @@ function App() {
     setSelectedYear(year)
   }
   function onRaceChange(raceId: string) {
-      console.log("race changed:", raceId)
-      setSelectedRace(raceId)
+    console.log("race changed:", raceId)
+    setSelectedRace(raceId)
   }
   useEffect(() => {
     if (!selectedYear) return  // don't run on initial page load
@@ -157,7 +157,7 @@ function App() {
           text: 'Lap'
         }
       },
-      y: {
+      y: {T
         reverse: true,
         display: true,
         title: {
@@ -212,7 +212,7 @@ function App() {
               null}
             </select>    
             {chartData && (
-                <Line data={scatterData} options={chartOptions} />
+                <Line data={scatterData} options={chartOptions} redraw={true} />
               )}
             </div>
           </div>
