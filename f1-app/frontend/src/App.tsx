@@ -120,14 +120,10 @@ function App() {
     responsive: true,
     plugins: {
       legend: {
-        display: false,
+        display: true,
       },
       title: {
-        display: true,
-        text: chartData?.title || 'Hello world!',
-        font: {
-          size: 20
-        }
+        display: false,
       },
     },
     scales: {
@@ -136,7 +132,7 @@ function App() {
         display: true,
         title: {
           display: true,
-          text: chartData?.x_title || 'Apps'
+          text: 'Lap'
         }
       },
       y: {
@@ -144,7 +140,7 @@ function App() {
         display: true,
         title: {
           display: true,
-          text: chartData?.y_title || 'Fun with data'
+          text: 'Position'
         }
       }
     }
