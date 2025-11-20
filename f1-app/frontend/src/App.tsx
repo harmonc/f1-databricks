@@ -175,6 +175,7 @@ function App() {
     <div className="App">
       <header className="App-header">        
           <div className="content">
+            <div className="chart-container">
             <select id="year" onChange={(e) => onYearChange(e.target.value)}>
             {yearData ? yearData.years.map((year) => (
               <option key={year} value={year} selected={year == selectedYear}>
@@ -190,16 +191,11 @@ function App() {
               </option>
             )):
               null}
-            </select>
-            {apiData ? null : (
-              <p>Failed to connect to API</p>
-            )}
-            
+            </select>    
             {chartData && (
-              <div className="chart-container">
                 <Line data={scatterData} options={chartOptions} />
-              </div>
-            )}
+              )}
+            </div>
           </div>
       </header>
     </div>
